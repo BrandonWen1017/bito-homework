@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: high-cpu-usage
+  namespace: monitoring   # 要跟 kube-prometheus-stack 部署的 namespace 一致
+  labels:
+    release: kube-prometheus   # Helm release 名稱，對應 prometheus instance
+spec:
+  groups:
+  - name: pod-rules
+    interval: 30s
+    rules:
+    - alert: HighPodCPUUsage
+      expr: (sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod) / sum(kube_pod_container_resource_requests_cpu_cores) by (pod)) > 0.8
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Pod {{ $labels.pod }} CPU 使用率過高"
+        description: "Pod {{ $labels.pod }} CPU 使用率已經超過 80% 持續 5 分鐘。"
