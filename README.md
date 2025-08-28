@@ -4,6 +4,7 @@
    docker build -t brandon-bito-homework:latest .
    ### 啟動
    docker run --rm -d -p 8080:80 brandon-bito-homework:latest
+![demo](bito-site.png)
 
 # 2. Helm-chart
    ### 安裝
