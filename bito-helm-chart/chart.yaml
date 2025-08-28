@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bito-homework
+description: A Helm chart for deploying a static site with Nginx
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
