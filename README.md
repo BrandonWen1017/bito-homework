@@ -13,6 +13,8 @@
    ### 移除
    helm uninstall bito-helm
 
-# 3. Terraform
-   
+# 3. Terraform (含open source的prometheus)
+   terraform init 
+   terraform apply
 
+# Extra 4. Prometheus-rules
